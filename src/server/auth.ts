@@ -7,6 +7,7 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 
+import EVEOnlineProvider from "next-auth/providers/eveonline";
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
  * object and keep type safety.
@@ -49,6 +50,11 @@ export const authOptions: NextAuthOptions = {
     //   clientId: env.DISCORD_CLIENT_ID,
     //   clientSecret: env.DISCORD_CLIENT_SECRET,
     // }),
+    EVEOnlineProvider({
+      clientId: process.env.EVE_CLIENT_ID,
+      clientSecret: process.env.EVE_CLIENT_SECRET
+    })
+
     /**
      * ...add more providers here.
      *
