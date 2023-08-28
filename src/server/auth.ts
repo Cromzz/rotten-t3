@@ -1,12 +1,13 @@
+import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { type GetServerSidePropsContext } from "next";
+import { NextApiRequest, NextApiResponse } from 'next';
 import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import { env } from 'process';
 import EVEOnlineProvider from "next-auth/providers/eveonline";
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -51,8 +52,8 @@ export const authOptions: NextAuthOptions = {
     //   clientSecret: env.DISCORD_CLIENT_SECRET,
     // }),
     EVEOnlineProvider({
-      clientId: process.env.EVE_CLIENT_ID,
-      clientSecret: process.env.EVE_CLIENT_SECRET
+      clientId: env.EVE_CLIENT_ID,
+      clientSecret: env.EVE_CLIENT_SECRET
     })
 
     /**
